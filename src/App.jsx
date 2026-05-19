@@ -1,5 +1,6 @@
 import { useTheme } from "./context/ThemeContext"
 import { useDictionary } from "./hooks/useDictionary";
+import Header from "./components/Header";
 
 const fontMap = {
   sans: 'font-sans',
@@ -12,9 +13,9 @@ function App() {
   const { result, status, error, search } = useDictionary();
 
   return (
-    <div className={`min-h-screen ${fontMap[font]} ${theme === 'dark' ? 'bg-zinc-950 text-zinc-50' : 'bg-zinc-50 text-zinc-900'}`}>
-      <div className="max-w-3xl mx-auto">
-
+    <div className={`min-h-screen ${fontMap[font]} ${theme === 'dark' ? 'bg-zinc-950 text-zinc-50' : 'bg-zinc-50 text-zinc-800'}`}>
+      <div className="max-w-3xl mx-auto space-y-8">
+        <Header />
         <h1 className="text-2xl">Dictionary web app</h1>
         <p className="font-serif">Serif font</p>
         <p className="font-mono">Monospace font</p>
