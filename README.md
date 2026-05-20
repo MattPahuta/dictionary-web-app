@@ -83,8 +83,8 @@ Use this section to outline areas that you want to continue focusing on in futur
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [The Joy of React](https://courses.joshwcomeau.com/) - In building out the form markup and behavior, I hewed quite close to the fundamental content Josh Comeau presents in his excellent Joy of React course. I can't recommend it enough.
+- [The A11Y Style Guide](https://a11y-style-guide.com/) - The A11Y Style Guide is an excellent resource for building out toughtful, accessible elements and behaviors. I'm a big fan.
 
 
 ## Author
