@@ -9,8 +9,6 @@ const fonts = [
 function Header() {
   const { theme, toggleTheme, font, changeFont } = useTheme();
 
-  const isDark = theme === "dark";
-
   return (
     <header className="py-5 flex items-center justify-between">
       {/* logo */}
@@ -36,15 +34,16 @@ function Header() {
         {/* font select */}
         <div className="relative">
           <select
+            name="fontSelect"
             value={font}
             onChange={(e) => changeFont(e.target.value)}
-            className="appearance-none cursor-pointer pr-8 pl-3 py-1.5 rounded-lg text-sm font-bold border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="appearance-none cursor-pointer pr-8 pl-3 py-1.5 rounded-lg text-sm font-bold border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-500 bg-zinc-50 dark:bg-zinc-800 dark:text-zinc-50 text-zinc-900"
             aria-label="Switch font">
             {fonts.map((font) => (
               <option
                 key={font.value}
                 value={font.value}
-                className="font-bold">
+                className="font-semibold">
                 {font.label}
               </option>
             ))}
@@ -71,11 +70,10 @@ function Header() {
         <button
           onClick={toggleTheme}
           role="switch"
-          aria-checked={isDark}
+          aria-checked={theme === "dark"}
           aria-label="Toggle dark mode"
-          className="relative w-10 h-6 rounded-full cursor-pointer bg-neutral-500 dark:bg-purple-500 focus-visible:outline-2 outline-offset-2 focus-visible:outline-purple-500">
-          <span
-            className={`absolute top-1 left-1 size-4 rounded-full bg-white transition-transform duration-300 ${isDark ? "translate-x-4" : "translate-x-0"}`}></span>
+          className="relative w-10 h-6 rounded-full cursor-pointer focus-visible:outline-2 outline-offset-4 focus-visible:outline-purple-500  bg-neutral-400 dark:bg-purple-500">
+          <span className="absolute top-1 left-1 size-4 rounded-full bg-white transition-transform duration-300 translate-x-0 dark:translate-x-4"></span>
         </button>
         {/* moon icon */}
         <svg
