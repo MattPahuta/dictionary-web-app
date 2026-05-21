@@ -31,7 +31,7 @@ function Phonetic({ word, phonetic, audioUrl }) {
           <button
             onClick={handlePlay}
             aria-label={`Play pronunciation of ${word}`}
-            className="group border-0 rounded-full flex items-center justify-center cursor-pointer">
+            className="group border-0 rounded-full flex items-center justify-center cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-500">
             <svg
               className="size-12 sm:h-[75px] sm:w-[75px]"
               aria-hidden="true"
@@ -45,11 +45,11 @@ function Phonetic({ word, phonetic, audioUrl }) {
                   cy="37.5"
                   r="37.5"
                   opacity=".25"
-                  className="group-hover:opacity-95"
+                  className="group-hover:opacity-95 transition-opacity duration-200"
                 />
                 <path
                   d="M29 27v21l21-10.5z"
-                  className={`group-hover:fill-white ${playing ? "fill-white" : "fill-purple-500"}`}
+                  className={`group-hover:fill-white ${playing ? "fill-white" : "fill-purple-500"} transition-colors duration-200`}
                 />
               </g>
             </svg>

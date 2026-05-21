@@ -33,7 +33,7 @@ function SearchForm({ onSearch }) {
         />
         <button
           type="submit"
-          className="min-h-12 px-5 py-2 inline-flex gap-3 items-center justify-center whitespace-nowrap rounded-lg font-medium bg-slate-800 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-950 shadow-xs hover:bg-slate-700 dark:hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500 cursor-pointer">
+          className="min-h-12 px-5 py-2 inline-flex gap-3 items-center justify-center whitespace-nowrap rounded-lg font-medium bg-zinc-800 dark:bg-zinc-100 text-white dark:text-zinc-950 shadow-xs hover:bg-zinc-700 dark:hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500 cursor-pointer">
           <svg
             aria-hidden="true"
             focusable="false"
@@ -43,8 +43,9 @@ function SearchForm({ onSearch }) {
             height="18"
             viewBox="0 0 18 18">
             <path
+              className="stroke-white dark:stroke-zinc-950"
               fill="none"
-              stroke="#a855f7"
+              // stroke="#a855f7"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="1.5"

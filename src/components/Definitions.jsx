@@ -9,18 +9,20 @@ function Definitions({ meaning, onWordClick }) {
         <div className="h-px flex-1 bg-gray-200 dark:bg-neutral-700"></div>
       </div>
       {/* Meaning label */}
-      <h4 className="mb-4 text-neutral-500">Meaning</h4>
+      <h4 className="mb-4 text-lg text-neutral-500 dark:text-neutral-400">Meaning</h4>
       {/* Definitions list */}
       <ul
         role="list"
-        className="space-y-3 list-disc marker:text-purple-500">
+        className="list-disc space-y-3 marker:text-purple-500">
         {definitions.map((item, index) => (
-          <li key={index} className="flex gap-4">
-            <p className="">{item.definition}</p>
+          <li
+            key={index}
+            className="flex flex-col gap-3">
+            <span>{item.definition}</span>
             {item.example && (
-              <p className="mt-1 text-neutral-500">
+              <span className="text-neutral-500">
                 &ldquo;{item.example}&rdquo;
-              </p>
+              </span>
             )}
           </li>
         ))}

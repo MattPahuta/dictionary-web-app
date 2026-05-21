@@ -6,12 +6,15 @@ const BASE_URL = 'https://api.dictionaryapi.dev/api/v2/entries/en';
 function extractPhonetic(entry) {
   const { phonetic, phonetics = [] } = entry;
 
+  //** phonetics is an array of potentially multiple objects */
+  // get the first object with an audio property that's not ""
   const withAudio = phonetics.find((p) => p.audio && p.audio.trim() !== '');
+  // get the first object with text property that's not ""
   const withText = phonetics.find((p) => p.text && p.text.trim() !== '');
 
   return {
     text: withAudio?.text || withText?.text || phonetic || '',
-    auido: withAudio?.audio || null,
+    audio: withAudio?.audio || null,
   }
 }
 
