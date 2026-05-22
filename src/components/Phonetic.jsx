@@ -16,7 +16,7 @@ function Phonetic({ word, phonetic, audioUrl }) {
           {word}
         </h1>
         {phonetic && (
-          <p className="text-lg text-purple-500">{phonetic}</p>
+          <p className="text-lg text-purple-700 dark:text-purple-400">{phonetic}</p>
         )}
       </div>
 

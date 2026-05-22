@@ -57,18 +57,30 @@ export function useDictionary() {
       const res = await fetch(`${BASE_URL}/${encodeURIComponent(query)}`);
 
       if (!res.ok) {
-        // a 404 from API means word wasn't found
         if (res.status === 404) {
-          throw new Error(`No definitions found for "${query}".`);
+          const apiError = await res.json();
+          setError(apiError)
+        } else {
+          setError({
+            title: "Something went wrong",
+            message: `The server returned an unexpected error (${res.status}).`,
+            resolution: "Please try again."
+          })
         }
-        throw new Error(`Something went wrong (${res.status}). Please try again.`)
+        setStatus('error');
+        return;
       }
 
       const data = await res.json();
       setResult(normalizeEntry(data[0])); // API returns an array; take first entry
       setStatus('success');
     } catch (error) {
-      setError(error.message);
+      console.log("An error has occurred. ", error);
+      setError({
+        title: "Connection Error",
+        message: "Unable to reach the dictionary service.",
+        resolution: "Check you internet connection and try again."
+      });
       setStatus('error');
     }
   }, []);

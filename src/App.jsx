@@ -3,6 +3,7 @@ import { useDictionary } from "./hooks/useDictionary";
 import Header from "./components/Header";
 import SearchForm from "./components/SearchForm";
 import WordResult from "./components/WordResult";
+import NotFound from "./components/NotFound";
 
 const fontMap = {
   sans: "font-sans",
@@ -30,13 +31,14 @@ function App() {
 
         {/* Error state */}
         {status === "error" && (
-          <div className="text-center py-16 space-y-4">
-            <span className="text-5xl">😕</span>
-            <h2 className="text-xl font-bold">
-              No definitions found
-            </h2>
-            <p className="text-zinc-500">{error}</p>
-          </div>
+          <NotFound error={error} />
+          // <div className="text-center py-16 space-y-4">
+          //   <span className="text-5xl">😕</span>
+          //   <h2 className="text-xl font-bold">
+          //     No definitions found
+          //   </h2>
+          //   <p className="text-zinc-500">{error}</p>
+          // </div>
         )}
 
         {/* Success state */}
