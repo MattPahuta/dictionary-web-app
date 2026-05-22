@@ -19,7 +19,6 @@ function App() {
       className={`min-h-screen ${fontMap[font]} dark:bg-zinc-950 dark:text-zinc-50 bg-zinc-50 text-zinc-800 space-y-8`}>
       <Header />
       <main className="max-w-3xl mx-auto px-4 sm:px-5 space-y-8 sm:space-y-10">
-        <h1 className="sr-only">Dictionary Search</h1>
         <SearchForm onSearch={search} />
 
         {/* Loading state */}

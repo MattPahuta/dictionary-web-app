@@ -12,9 +12,9 @@ function Phonetic({ word, phonetic, audioUrl }) {
   return (
     <div className="flex items-center justify-between">
       <div>
-        <h2 className="mb-2 text-4xl sm:text-6xl font-bold tracking-tight">
+        <h1 className="mb-2 text-4xl sm:text-6xl font-bold tracking-tight">
           {word}
-        </h2>
+        </h1>
         {phonetic && (
           <p className="text-lg text-purple-500">{phonetic}</p>
         )}
