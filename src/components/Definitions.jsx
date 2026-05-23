@@ -5,13 +5,13 @@ function Definitions({ meaning, onWordClick }) {
     <div className="">
       {/* part of speech and horizontal rule */}
       <div className="mb-6 flex gap-5 items-center">
-        <h3 className="text-lg sm:text-2xl italic font-bold">{partOfSpeech}</h3>
+        <h2 className="text-lg sm:text-2xl italic font-bold">{partOfSpeech}</h2>
         <div className="h-px flex-1 bg-gray-200 dark:bg-neutral-700"></div>
       </div>
       {/* Meaning label */}
-      <h3 className="mb-4 sm:text-xl text-neutral-600 dark:text-neutral-400">
+      <p className="mb-4 sm:text-xl text-neutral-600 dark:text-neutral-400">
         Meaning
-      </h3>
+      </p>
       {/* Definitions list */}
       <ul
         role="list"

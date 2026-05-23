@@ -16,19 +16,17 @@ function SearchForm({ onSearch }) {
 
   return (
     <form className="grid" onSubmit={handleSubmit}>
-      {/* form controls wrapper - for styling */}
       <div className="flex gap-4 flex-col sm:flex-row">
-        {/* mobile - width full, h-48px */}
         <input
           type="search"
           name="search"
           aria-label="Search"
+          aria-describedby="search-description"
           placeholder="Search for any word..."
           value={searchTerm}
           onChange={(event) => {
             setSearchTerm(event.target.value);
           }}
-
           className={`min-h-12 px-3 py-1.5 block w-full caret-purple-500 rounded-lg border-0 text-base bg-neutral-200 text-slate-950 dark:bg-zinc-800 dark:text-zinc-50 outline-1 -outline-offset-1 ${searchError ? "outline-red-400" : "outline-slate-300"} dark:outline-zinc-700 focus:outline-2 focus:-outline-offset-2 focus:outline-purple-500`}
         />
         <button
@@ -45,7 +43,6 @@ function SearchForm({ onSearch }) {
             <path
               className="stroke-white dark:stroke-zinc-950"
               fill="none"
-              // stroke="#a855f7"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="1.5"
@@ -56,9 +53,9 @@ function SearchForm({ onSearch }) {
         </button>
       </div>
       {searchError && (
-        <span className="mt-3 text-sm sm:text-base text-red-400">
+        <p id="search-description" className="mt-3 text-sm sm:text-base text-red-400">
           Whoops, can't be empty...
-        </span>
+        </p>
       )}
     </form>
   );

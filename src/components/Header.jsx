@@ -10,7 +10,7 @@ function Header() {
   const { theme, toggleTheme, font, changeFont } = useTheme();
 
   return (
-    <header className="max-w-3xl mx-auto py-5 px-4 sm:px-5 flex items-center justify-between">
+    <header className="w-full max-w-3xl mx-auto py-5 px-4 sm:px-5 flex items-center justify-between">
       {/* logo */}
       <svg
         className="w-7 sm:w-8"

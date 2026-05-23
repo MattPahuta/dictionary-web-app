@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-function Phonetic({ word, phonetic, audioUrl }) {
+function WordHeader({ word, phonetic, audioUrl }) {
   const audioRef = useRef(null);
   const [playing, setPlaying] = useState(false);
 
@@ -60,4 +60,4 @@ function Phonetic({ word, phonetic, audioUrl }) {
   );
 }
 
-export default Phonetic;
+export default WordHeader;

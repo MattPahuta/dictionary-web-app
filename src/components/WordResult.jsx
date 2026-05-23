@@ -1,4 +1,4 @@
-import Phonetic from "./Phonetic";
+import WordHeader from "./WordHeader";
 import Definitions from "./Definitions";
 
 function WordResult({ result, onWordClick }) {
@@ -6,7 +6,7 @@ function WordResult({ result, onWordClick }) {
 
   return (
     <article className="space-y-6">
-      <Phonetic word={word} phonetic={phonetic} audioUrl={audioUrl} />
+      <WordHeader word={word} phonetic={phonetic} audioUrl={audioUrl} />
 
       {meanings.map((meaning, index) => (
         <Definitions
