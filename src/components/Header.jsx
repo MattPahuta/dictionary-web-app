@@ -11,13 +11,15 @@ function Header() {
 
   return (
     <header className="w-full max-w-3xl mx-auto py-5 px-4 sm:px-5 flex items-center justify-between">
-      {/* logo */}
       <svg
+        role="img"
+        aria-labelledby="title"
         className="w-7 sm:w-8"
         xmlns="http://www.w3.org/2000/svg"
         width="34"
         height="38"
         viewBox="0 0 34 38">
+        <title id="title">Dictionary app logo</title>
         <g
           fill="none"
           fillRule="evenodd"
@@ -29,9 +31,7 @@ function Header() {
           <path d="M11 9h12" />
         </g>
       </svg>
-      {/* right side controls */}
       <div className="flex gap-4 items-center">
-        {/* font select */}
         <div className="relative">
           <select
             name="fontSelect"
@@ -48,9 +48,10 @@ function Header() {
               </option>
             ))}
           </select>
-          {/* custom dropdown arrow image */}
           <div className="absolute right-2 top-1/2 -translate-y-1/2">
             <svg
+              aria-hidden="true"
+              focusable="false"
               xmlns="http://www.w3.org/2000/svg"
               width="14"
               height="8"
@@ -64,9 +65,7 @@ function Header() {
             </svg>
           </div>
         </div>
-        {/* vertical divider */}
         <div className="w-px h-6 bg-neutral-400"></div>
-        {/* light/dark theme toggle */}
         <button
           onClick={toggleTheme}
           role="switch"
@@ -75,8 +74,9 @@ function Header() {
           className="relative w-10 h-6 rounded-full cursor-pointer focus-visible:outline-2 outline-offset-4 focus-visible:outline-purple-500  bg-neutral-400 dark:bg-purple-500">
           <span className="absolute top-1 left-1 size-4 rounded-full bg-white transition-transform duration-300 translate-x-0 dark:translate-x-4"></span>
         </button>
-        {/* moon icon */}
         <svg
+          aria-hidden="true"
+          focusable="false"
           xmlns="http://www.w3.org/2000/svg"
           width="22"
           height="22"

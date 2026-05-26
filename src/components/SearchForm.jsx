@@ -19,7 +19,7 @@ function SearchForm({ onSearch }) {
       <div className="flex gap-4 flex-col sm:flex-row">
         <input
           type="search"
-          name="search"
+          name="searchedWord"
           aria-label="Search"
           aria-describedby="search-description"
           placeholder="Search for any word..."
