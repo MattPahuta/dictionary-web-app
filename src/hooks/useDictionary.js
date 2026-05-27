@@ -14,7 +14,7 @@ function extractPhonetic(entry) {
   }
 }
 
-// normalize word entry received from API into better shape for UI
+// normalize word entry received from API for consistent shape handling by UI
 function normalizeEntry(entry) {
   const { text: phoneticText, audio: audioUrl } = extractPhonetic(entry);
 
@@ -32,6 +32,21 @@ function normalizeEntry(entry) {
       antonyms: m.antonyms || [],
     })),
     sourceUrls: entry.sourceUrls || [],
+  }
+}
+
+// normalize errors received from API for consistent error handling by UI components
+function normalizeError(status, apiBody = {}) {
+  const fallback = {
+    title: "No Definitions Found",
+    message: "Sorry pal, we couldn't find definitions for the word you were looking for.",
+    resolution: "You can try the search again at a later time or head to the web instead." 
+  }
+
+  return {
+    title: typeof apiBody.title === 'string' ? apiBody.title : fallback.title,
+    message: typeof apiBody.message === 'string' ? apiBody.message : fallback.message,
+    resolution: typeof apiBody.resolution === 'string' ? apiBody.resolution : fallback.resolution,
   }
 }
 
@@ -54,23 +69,29 @@ export function useDictionary() {
 
       if (!res.ok) {
         if (res.status === 404) {
-          const apiError = await res.json();
-          setError(apiError)
+          let apiBody = {};
+          try { 
+            apiBody = await res.json()
+          } catch {
+            setError(normalizeError(404, apiBody));
+            setStatus('error')
+          }
         } else {
           setError({
             title: "Something went wrong",
             message: `The server returned an unexpected error (${res.status}).`,
             resolution: "Please try again."
-          })
+          });
         }
         setStatus('error');
         return;
       }
 
       const data = await res.json();
-      setResult(normalizeEntry(data[0])); // API returns an array; take first entry
+      setResult(normalizeEntry(data[0]));
       setStatus('success');
     } catch (error) {
+      console.error(error);
       setError({
         title: "Connection Error",
         message: "Unable to reach the dictionary service.",

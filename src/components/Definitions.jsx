@@ -54,9 +54,8 @@ function WordTagList({ label, words, onWordClick }) {
       </h3>
       <ul className="flex flex-wrap gap-x-3 gap-y-2">
         {words.map((word) => (
-          <li>
+          <li key={word}>
             <button
-              key={word}
               onClick={() => onWordClick(word)}
               className="py-1 px-2 rounded-lg text-purple-700 dark:text-purple-400 font-bold hover:underline focus-visible:outline-2 focus-visible:outline-purple-700 dark:focus-visible:outline-white outline-offset-1 cursor-pointer">
               {word}
