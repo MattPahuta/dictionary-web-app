@@ -8,10 +8,14 @@ import {
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState("light"); // light, dark
+  const [theme, setTheme] = useState(() => {
+    const stored = localStorage.getItem("theme");
+    if (stored) return stored === "dark";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
+
   const [font, setFont] = useState("sans"); // sans, serif, mono
 
-  // persist preferences to localStorage
   useEffect(() => {
     const savedTheme = localStorage.getItem("dict-theme") || "light";
     const savedFont = localStorage.getItem("dict-font") || "sans";
@@ -21,6 +25,7 @@ export function ThemeProvider({ children }) {
       document.documentElement.classList.add("dark");
     }
   }, []);
+
 
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";

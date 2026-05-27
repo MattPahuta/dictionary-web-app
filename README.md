@@ -51,7 +51,7 @@ This is a solution to the [Dictionary web app challenge on Frontend Mentor](http
 ### Links
 
 - [Solution URL](https://your-solution-url.com)
-- [live demo site](https://your-live-site-url.com)
+- [live demo site](https://dictionary-web-app-kappa-six.vercel.app/)
 
 ### Project Structure
  
