@@ -1,8 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function SearchForm({ onSearch }) {
+function SearchForm({ onSearch, currentWord }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchError, setSearchError] = useState(false);
+
+  useEffect(() => {
+    if (currentWord) {
+      setSearchTerm(currentWord);
+      setSearchError(false);
+    }
+  }, [currentWord]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -53,7 +60,7 @@ function SearchForm({ onSearch }) {
         </button>
       </div>
       {searchError && (
-        <p id="search-description" className="mt-3 text-sm sm:text-base text-red-400">
+        <p id="search-description" className="mt-3 text-sm sm:text-base text-red-400" aria-live="polite">
           Whoops, can't be empty...
         </p>
       )}

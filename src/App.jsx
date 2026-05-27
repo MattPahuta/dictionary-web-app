@@ -26,7 +26,7 @@ function App() {
             Dictionary Search
           </h1>
         )}
-        <SearchForm onSearch={search} />
+        <SearchForm onSearch={search} currentWord={result?.word} />
 
         {status === "loading" && (
           <div className="flex justify-center py-16">
@@ -39,7 +39,7 @@ function App() {
         {status === "success" && result && (
           <WordResult result={result} onWordClick={search} />
         )}
-        
+
       </main>
       <Footer />
     </div>
