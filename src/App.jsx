@@ -27,18 +27,19 @@ function App() {
           </h1>
         )}
         <SearchForm onSearch={search} />
-        {/* Loading state */}
+
         {status === "loading" && (
           <div className="flex justify-center py-16">
             <div className="w-10 h-10 rounded-full border-4 border-purple-500 border-t-transparent motion-safe:animate-spin" />
           </div>
         )}
-        {/* Error state */}
+
         {status === "error" && <NotFound error={error} />}
-        {/* Success state */}
+
         {status === "success" && result && (
           <WordResult result={result} onWordClick={search} />
         )}
+        
       </main>
       <Footer />
     </div>

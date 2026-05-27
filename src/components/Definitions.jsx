@@ -3,16 +3,13 @@ function Definitions({ meaning, onWordClick }) {
 
   return (
     <div className="">
-      {/* part of speech and horizontal rule */}
       <div className="mb-6 flex gap-5 items-center">
         <h2 className="text-lg sm:text-2xl italic font-bold">{partOfSpeech}</h2>
         <div className="h-px flex-1 bg-gray-200 dark:bg-neutral-700"></div>
       </div>
-      {/* Meaning label */}
       <p className="mb-4 sm:text-xl text-neutral-600 dark:text-neutral-400">
         Meaning
       </p>
-      {/* Definitions list */}
       <ul
         role="list"
         className="pl-4 sm:pl-6 list-disc space-y-3 marker:text-purple-500">
@@ -29,7 +26,6 @@ function Definitions({ meaning, onWordClick }) {
           </li>
         ))}
       </ul>
-      {/* Synonyms */}
       {synonyms.length > 0 && (
         <WordTagList
           label="Synonyms"
@@ -37,7 +33,6 @@ function Definitions({ meaning, onWordClick }) {
           onWordClick={onWordClick}
         />
       )}
-      {/* Antonyms */}
       {antonyms.length > 0 && (
         <WordTagList
           label="Antonyms"
@@ -49,7 +44,6 @@ function Definitions({ meaning, onWordClick }) {
   );
 }
 
-// Generate section for list of synonyms or antonyms, if available
 function WordTagList({ label, words, onWordClick }) {
   return (
     <div className="mt-5 flex gap-4">
