@@ -31,6 +31,7 @@ function WordHeader({ word, phonetic, audioUrl }) {
           <button
             onClick={handlePlay}
             aria-label={`Play pronunciation of ${word}`}
+            aria-pressed={playing}
             className="group border-0 rounded-full flex items-center justify-center cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-500">
             <svg
               className="size-12 sm:h-[75px] sm:w-[75px]"

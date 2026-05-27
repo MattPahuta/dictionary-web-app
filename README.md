@@ -98,16 +98,14 @@ The theme system leverages React context and Tailwind's `dark` class variant fea
 @custom-variant dark (&:where(.dark, .dark *));
 ```
 
-Additionally, preferences are persisted using `localStorage` and re-applied on mount.
+Additionally, user's preferred theme is used and preferences are persisted using `localStorage` and re-applied on mount.
 
 ```js
-export function ThemeProvider({ children }) {
   const [darkMode, setDarkMode] = useState(() => {
     const stored = localStorage.getItem("theme");
     if (stored) return stored === "dark";
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
-  ...
 ```
 
 ### Font Switching

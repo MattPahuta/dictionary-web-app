@@ -8,7 +8,8 @@ import {
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(() => {
+
+  const [darkMode, setDarkMode] = useState(() => {
     const stored = localStorage.getItem("theme");
     if (stored) return stored === "dark";
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -16,21 +17,22 @@ export function ThemeProvider({ children }) {
 
   const [font, setFont] = useState("sans");
 
-  
   useEffect(() => {
     const root = document.documentElement;
     const savedFont = localStorage.getItem("dict-font") || "sans";
     setFont(savedFont);
-    if (theme) {
+
+    if (darkMode) {
       root.classList.add("dark");
       localStorage.setItem("theme", "dark");
     } else {
       root.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
-  }, [theme]);
+  }, [darkMode]);
 
-  const toggleTheme = () => setTheme((prev) => !prev);
+  const toggleDarkMode = () => setDarkMode((prev) => !prev);
+
 
   const changeFont = (font) => {
     setFont(font);
@@ -39,7 +41,7 @@ export function ThemeProvider({ children }) {
 
   return (
     <ThemeContext.Provider
-      value={{ theme, toggleTheme, font, changeFont }}>
+      value={{ darkMode, toggleDarkMode, font, changeFont }}>
       {children}
     </ThemeContext.Provider>
   );

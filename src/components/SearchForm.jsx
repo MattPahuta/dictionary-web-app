@@ -28,7 +28,6 @@ function SearchForm({ onSearch, currentWord }) {
           type="search"
           name="searchedWord"
           aria-label="Search"
-          aria-describedby="search-description"
           placeholder="Search for any word..."
           value={searchTerm}
           onChange={(event) => {
@@ -60,7 +59,7 @@ function SearchForm({ onSearch, currentWord }) {
         </button>
       </div>
       {searchError && (
-        <p id="search-description" className="mt-3 text-sm sm:text-base text-red-400" aria-live="polite">
+        <p className="mt-3 text-sm sm:text-base text-red-400" aria-live="polite">
           Whoops, can't be empty...
         </p>
       )}

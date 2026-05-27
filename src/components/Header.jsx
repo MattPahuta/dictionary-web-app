@@ -7,7 +7,7 @@ const fonts = [
 ];
 
 function Header() {
-  const { theme, toggleTheme, font, changeFont } = useTheme();
+  const { darkMode, toggleDarkMode, font, changeFont } = useTheme();
 
   return (
     <header className="w-full max-w-3xl mx-auto py-5 px-4 sm:px-5 flex items-center justify-between">
@@ -67,9 +67,9 @@ function Header() {
         </div>
         <div className="w-px h-6 bg-neutral-400"></div>
         <button
-          onClick={toggleTheme}
+          onClick={toggleDarkMode}
           role="switch"
-          aria-checked={theme === "dark"}
+          aria-checked={darkMode}
           aria-label="Toggle dark mode"
           className="relative w-10 h-6 rounded-full cursor-pointer focus-visible:outline-2 outline-offset-4 focus-visible:outline-purple-500  bg-neutral-400 dark:bg-purple-500">
           <span className="absolute top-1 left-1 size-4 rounded-full bg-white transition-transform duration-300 translate-x-0 dark:translate-x-4"></span>
