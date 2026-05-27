@@ -29,7 +29,7 @@ function normalizeEntry(entry) {
         example: d.example || null,
       })),
       synonyms: m.synonyms || [],
-      antonyms: m.antonym || [],
+      antonyms: m.antonyms || [],
     })),
     sourceUrls: entry.sourceUrls || [],
   }
@@ -71,7 +71,6 @@ export function useDictionary() {
       setResult(normalizeEntry(data[0])); // API returns an array; take first entry
       setStatus('success');
     } catch (error) {
-      console.log("An error has occurred. ", error);
       setError({
         title: "Connection Error",
         message: "Unable to reach the dictionary service.",

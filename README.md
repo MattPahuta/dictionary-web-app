@@ -50,7 +50,7 @@ This is a solution to the [Dictionary web app challenge on Frontend Mentor](http
 
 ### Links
 
-- [Solution URL](https://your-solution-url.com)
+- [Frontend Mentor solution page](https://www.frontendmentor.io/solutions/dictionary-web-app-built-with-react-and-tailwind-css-SjwfQAQdsu)
 - [live demo site](https://dictionary-web-app-kappa-six.vercel.app/)
 
 ### Project Structure
