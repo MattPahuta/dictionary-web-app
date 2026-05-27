@@ -14,25 +14,23 @@ export function ThemeProvider({ children }) {
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
 
-  const [font, setFont] = useState("sans"); // sans, serif, mono
+  const [font, setFont] = useState("sans");
 
+  
   useEffect(() => {
-    const savedTheme = localStorage.getItem("dict-theme") || "light";
+    const root = document.documentElement;
     const savedFont = localStorage.getItem("dict-font") || "sans";
-    setTheme(savedTheme);
     setFont(savedFont);
-    if (savedTheme === "dark") {
-      document.documentElement.classList.add("dark");
+    if (theme) {
+      root.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      root.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
-  }, []);
+  }, [theme]);
 
-
-  const toggleTheme = () => {
-    const nextTheme = theme === "light" ? "dark" : "light";
-    setTheme(nextTheme);
-    localStorage.setItem("dict-theme", nextTheme);
-    document.documentElement.classList.toggle("dark", nextTheme === "dark");
-  };
+  const toggleTheme = () => setTheme((prev) => !prev);
 
   const changeFont = (font) => {
     setFont(font);
