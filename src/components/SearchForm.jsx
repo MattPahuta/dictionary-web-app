@@ -33,7 +33,7 @@ function SearchForm({ onSearch, currentWord }) {
           onChange={(event) => {
             setSearchTerm(event.target.value);
           }}
-          className={`min-h-12 px-3 py-1.5 block w-full caret-purple-500 rounded-lg border-0 text-base bg-neutral-200 text-slate-950 dark:bg-zinc-800 dark:text-zinc-50 outline-1 -outline-offset-1 ${searchError ? "outline-red-400" : "outline-slate-300"} dark:outline-zinc-700 focus:outline-2 focus:-outline-offset-2 focus:outline-purple-500`}
+          className={`min-h-12 px-3 py-1.5 block w-full caret-purple-500 rounded-lg border-0 text-base bg-neutral-200 text-slate-950 dark:bg-zinc-800 dark:text-zinc-50 outline-1 -outline-offset-1 dark:outline-zinc-700 focus:outline-2 focus:-outline-offset-2 focus:outline-purple-500 ${searchError ? "outline-red-400" : "outline-slate-300"}`}
         />
         <button
           type="submit"
@@ -41,7 +41,7 @@ function SearchForm({ onSearch, currentWord }) {
           <svg
             aria-hidden="true"
             focusable="false"
-            className=""  
+            className=""
             xmlns="http://www.w3.org/2000/svg"
             width="18"
             height="18"
@@ -59,7 +59,9 @@ function SearchForm({ onSearch, currentWord }) {
         </button>
       </div>
       {searchError && (
-        <p className="mt-3 text-sm sm:text-base text-red-400" aria-live="polite">
+        <p
+          className="mt-3 text-sm sm:text-base text-red-400"
+          aria-live="polite">
           Whoops, can't be empty...
         </p>
       )}

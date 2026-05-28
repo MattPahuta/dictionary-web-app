@@ -16,7 +16,7 @@ function Definitions({ meaning, onWordClick }) {
         role="list"
         className="pl-4 sm:pl-6 list-disc space-y-3 marker:text-purple-500">
         {definitions.map((item) => (
-          <li key={item}>
+          <li key={item.definition}>
             <div className="flex flex-col gap-1 sm:gap-2">
               <span>{item.definition}</span>
               {item.example && (
