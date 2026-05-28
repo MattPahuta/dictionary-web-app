@@ -65,39 +65,30 @@ export function useDictionary() {
     setResult(null);
 
     try {
-      const res = await fetch(`${BASE_URL}/${encodeURIComponent(query)}`);
+      const res = await fetch(`${BASE_URL}/${encodeURIComponent(query)}`)
 
       if (!res.ok) {
+        let apiBody = {}
+        // Only attempt to parse the body for 404s — other error codes
+        // may not return a JSON body at all
         if (res.status === 404) {
-          let apiBody = {};
           try { 
-            apiBody = await res.json()
-          } catch {
-            setError(normalizeError(404, apiBody));
-            setStatus('error')
-          }
-        } else {
-          setError({
-            title: "Something went wrong",
-            message: `The server returned an unexpected error (${res.status}).`,
-            resolution: "Please try again."
-          });
+            apiBody = await res.json() 
+          } catch { /* leave apiBody as {} */ }
         }
-        setStatus('error');
-        return;
+        // All HTTP errors go through normaliseError — consistent shape guaranteed
+        setError(normalizeError(res.status, apiBody))
+        setStatus('error')
+        return
       }
 
-      const data = await res.json();
-      setResult(normalizeEntry(data[0]));
-      setStatus('success');
-    } catch (error) {
-      console.error(error);
-      setError({
-        title: "Connection Error",
-        message: "Unable to reach the dictionary service.",
-        resolution: "Check you internet connection and try again."
-      });
-      setStatus('error');
+      const data = await res.json()
+      setResult(normalizeEntry(data[0]))
+      setStatus('success')
+
+    } catch {
+      setError(normalizeError('network'))
+      setStatus('error')
     }
   }, []);
 
