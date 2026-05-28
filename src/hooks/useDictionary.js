@@ -2,7 +2,6 @@ import { useState, useCallback } from "react";
 
 const BASE_URL = 'https://api.dictionaryapi.dev/api/v2/entries/en';
 
-// pull the cleanest phonetic text and first available audio URL from phonetics array
 function extractPhonetic(entry) {
   const { phonetic, phonetics = [] } = entry;
   const withAudio = phonetics.find((p) => p.audio && p.audio.trim() !== '');
@@ -14,7 +13,6 @@ function extractPhonetic(entry) {
   }
 }
 
-// normalize word entry received from API for consistent shape handling by UI
 function normalizeEntry(entry) {
   const { text: phoneticText, audio: audioUrl } = extractPhonetic(entry);
 
@@ -35,7 +33,6 @@ function normalizeEntry(entry) {
   }
 }
 
-// normalize errors received from API for consistent error handling by UI components
 function normalizeError(status, apiBody = {}) {
   const fallback = {
     title: "No Definitions Found",
@@ -55,7 +52,6 @@ export function useDictionary() {
   const [status, setStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
   const [error, setError] = useState(null); // error message or null
 
-  // useCallback to keep function reference stable, safe to pass via props
   const search = useCallback(async (word) => {
     const query = word.trim();
     if (!query) return;
@@ -65,20 +61,21 @@ export function useDictionary() {
     setResult(null);
 
     try {
-      const res = await fetch(`${BASE_URL}/${encodeURIComponent(query)}`)
+      const res = await fetch(`${BASE_URL}/${encodeURIComponent(query)}`);
 
       if (!res.ok) {
-        let apiBody = {}
-
+        // Only attempt to parse the body for 404s — other status codes
+        // may not return a JSON body at all
         if (res.status === 404) {
-          try { 
-            apiBody = await res.json() ;
-          } catch { 
-            setStatus('error');
-            setError(normalizeError(res.status));
-          }
+          let apiBody = {};
+          try { apiBody = await res.json(); } catch { /* leave apiBody as {} */ }
+          setError(normalizeError(404, apiBody));
+          setStatus('error');
+          return;
         }
-        setError(normalizeError(res.status, apiBody));
+
+        // Non-404 HTTP errors (500, 429, etc.)
+        setError(normalizeError(res.status));
         setStatus('error');
         return;
       }
@@ -88,6 +85,7 @@ export function useDictionary() {
       setStatus('success');
 
     } catch {
+      // fetch() itself threw — true network failure
       setError(normalizeError('network'));
       setStatus('error');
     }

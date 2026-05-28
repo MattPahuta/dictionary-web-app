@@ -8,7 +8,6 @@ import {
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-
   const [darkMode, setDarkMode] = useState(() => {
     const stored = localStorage.getItem("theme");
     if (stored) return stored === "dark";
@@ -18,8 +17,10 @@ export function ThemeProvider({ children }) {
   const [font, setFont] = useState("sans");
 
   useEffect(() => {
-    const savedFont = localStorage.getItem("dict-font") || "sans";
-    setFont(savedFont);
+    const savedFont = localStorage.getItem("dict-font");
+    if (savedFont !== font) {
+      setFont(savedFont);
+    }
   }, [font]);
 
   useEffect(() => {

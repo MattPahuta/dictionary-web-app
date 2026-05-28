@@ -16,7 +16,7 @@ function Definitions({ meaning, onWordClick }) {
         role="list"
         className="pl-4 sm:pl-6 list-disc space-y-3 marker:text-purple-500">
         {definitions.map((item, index) => (
-          <li key={index} className="">
+          <li key={`${partOfSpeech}-${index}`}>
             <div className="flex flex-col gap-1 sm:gap-2">
               <span>{item.definition}</span>
               {item.example && (
@@ -54,7 +54,7 @@ function WordTagList({ label, words, onWordClick }) {
       </h3>
       <ul className="flex flex-wrap gap-x-3 gap-y-2">
         {words.map((word, index) => (
-          <li key={index}>
+          <li key={`${word}-${index}`}>
             <button
               onClick={() => onWordClick(word)}
               className="py-1 px-2 rounded-lg text-purple-700 dark:text-purple-400 font-bold hover:underline focus-visible:outline-2 focus-visible:outline-purple-700 dark:focus-visible:outline-white outline-offset-1 cursor-pointer">
