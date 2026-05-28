@@ -69,14 +69,15 @@ export function useDictionary() {
 
       if (!res.ok) {
         let apiBody = {}
-        // Only attempt to parse the body for 404s — other error codes
-        // may not return a JSON body at all
+
         if (res.status === 404) {
           try { 
             apiBody = await res.json() 
-          } catch { /* leave apiBody as {} */ }
+          } catch { 
+            setStatus('error')
+            normalizeError(res.status)
+          }
         }
-        // All HTTP errors go through normaliseError — consistent shape guaranteed
         setError(normalizeError(res.status, apiBody))
         setStatus('error')
         return

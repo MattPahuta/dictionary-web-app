@@ -48,7 +48,7 @@ function Definitions({ meaning, onWordClick }) {
 
 function WordTagList({ label, words, onWordClick }) {
   return (
-    <div className="mt-5 flex gap-4">
+    <div className="mt-5 flex flex-col sm:flex-row gap-4">
       <h3 className="text-neutral-600 dark:text-neutral-400 sm:text-xl">
         {label}
       </h3>
