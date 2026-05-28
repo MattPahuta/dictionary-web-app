@@ -18,10 +18,8 @@ export function ThemeProvider({ children }) {
 
   useEffect(() => {
     const savedFont = localStorage.getItem("dict-font");
-    if (savedFont !== font) {
-      setFont(savedFont);
-    }
-  }, [font]);
+    if (savedFont) setFont(savedFont);
+  }, []);
 
   useEffect(() => {
     const root = document.documentElement;

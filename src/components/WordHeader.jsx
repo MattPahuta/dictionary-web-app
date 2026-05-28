@@ -1,12 +1,33 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 function WordHeader({ word, phonetic, audioUrl }) {
   const audioRef = useRef(null);
   const [playing, setPlaying] = useState(false);
+  const [audioError, setAudioError] = useState(false);
 
-  const handlePlay = () => {
+  // Stop and reset if the word changes mid-playback
+  useEffect(() => {
+    const playButton = audioRef.current;
+    return () => {
+      if (playButton.current) {
+        playButton.current.pause();
+        playButton.current.currentTime = 0;
+      }
+      setPlaying(false);
+    };
+  }, [word]);
+
+  const handlePlay = async () => {
     if (!audioRef.current) return;
-    audioRef.current.play();
+
+    try {
+      setAudioError(false);
+      await audioRef.current.play();
+    } catch {
+      // Playback failed — reset button state and surface a subtle indicator
+      setPlaying(false);
+      setAudioError(true);
+    }
   };
 
   return (
@@ -16,7 +37,9 @@ function WordHeader({ word, phonetic, audioUrl }) {
           {word}
         </h1>
         {phonetic && (
-          <p className="text-lg text-purple-700 dark:text-purple-400">{phonetic}</p>
+          <p className="text-lg text-purple-700 dark:text-purple-400">
+            {phonetic}
+          </p>
         )}
       </div>
 
@@ -27,12 +50,18 @@ function WordHeader({ word, phonetic, audioUrl }) {
             src={audioUrl}
             onPlay={() => setPlaying(true)}
             onEnded={() => setPlaying(false)}
+            onPause={() => setPlaying(false)}
+            onError={() => {
+              setPlaying(false);
+              setAudioError(true);
+            }}
           />
           <button
             onClick={handlePlay}
+            disabled={playing}
             aria-label={`Play pronunciation of ${word}`}
             aria-pressed={playing}
-            className="group border-0 rounded-full flex items-center justify-center cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-500">
+            className="group border-0 rounded-full flex items-center justify-center cursor-pointer disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-500">
             <svg
               className="size-12 sm:h-[75px] sm:w-[75px]"
               aria-hidden="true"
@@ -55,6 +84,9 @@ function WordHeader({ word, phonetic, audioUrl }) {
               </g>
             </svg>
           </button>
+          {audioError && (
+            <p className="text-xs text-zinc-600 dark:text-zinc-300">Audio unavailable</p>
+          )}
         </>
       )}
     </div>
