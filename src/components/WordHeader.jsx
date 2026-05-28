@@ -7,15 +7,15 @@ function WordHeader({ word, phonetic, audioUrl }) {
 
   // Stop and reset if the word changes mid-playback
   useEffect(() => {
-    const playButton = audioRef.current;
     return () => {
-      if (playButton.current) {
-        playButton.current.pause();
-        playButton.current.currentTime = 0;
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
       }
       setPlaying(false);
     };
   }, [word]);
+
 
   const handlePlay = async () => {
     if (!audioRef.current) return;

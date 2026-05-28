@@ -14,12 +14,10 @@ export function ThemeProvider({ children }) {
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
 
-  const [font, setFont] = useState("sans");
-
-  useEffect(() => {
+  const [font, setFont] = useState(() => {
     const savedFont = localStorage.getItem("dict-font");
-    if (savedFont) setFont(savedFont);
-  }, []);
+    return savedFont || "sans";
+  });
 
   useEffect(() => {
     const root = document.documentElement;

@@ -15,8 +15,8 @@ function Definitions({ meaning, onWordClick }) {
       <ul
         role="list"
         className="pl-4 sm:pl-6 list-disc space-y-3 marker:text-purple-500">
-        {definitions.map((item, index) => (
-          <li key={`${partOfSpeech}-${index}`}>
+        {definitions.map((item) => (
+          <li key={item}>
             <div className="flex flex-col gap-1 sm:gap-2">
               <span>{item.definition}</span>
               {item.example && (
