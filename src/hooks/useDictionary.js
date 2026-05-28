@@ -72,24 +72,24 @@ export function useDictionary() {
 
         if (res.status === 404) {
           try { 
-            apiBody = await res.json() 
+            apiBody = await res.json() ;
           } catch { 
-            setStatus('error')
-            normalizeError(res.status)
+            setStatus('error');
+            setError(normalizeError(res.status));
           }
         }
-        setError(normalizeError(res.status, apiBody))
-        setStatus('error')
-        return
+        setError(normalizeError(res.status, apiBody));
+        setStatus('error');
+        return;
       }
 
-      const data = await res.json()
-      setResult(normalizeEntry(data[0]))
-      setStatus('success')
+      const data = await res.json();
+      setResult(normalizeEntry(data[0]));
+      setStatus('success');
 
     } catch {
-      setError(normalizeError('network'))
-      setStatus('error')
+      setError(normalizeError('network'));
+      setStatus('error');
     }
   }, []);
 

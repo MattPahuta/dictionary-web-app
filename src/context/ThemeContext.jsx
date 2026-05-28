@@ -18,9 +18,12 @@ export function ThemeProvider({ children }) {
   const [font, setFont] = useState("sans");
 
   useEffect(() => {
-    const root = document.documentElement;
     const savedFont = localStorage.getItem("dict-font") || "sans";
     setFont(savedFont);
+  }, [font]);
+
+  useEffect(() => {
+    const root = document.documentElement;
 
     if (darkMode) {
       root.classList.add("dark");
@@ -32,7 +35,6 @@ export function ThemeProvider({ children }) {
   }, [darkMode]);
 
   const toggleDarkMode = () => setDarkMode((prev) => !prev);
-
 
   const changeFont = (font) => {
     setFont(font);

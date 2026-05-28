@@ -26,7 +26,7 @@ function WordResult({ result, onWordClick }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 underline hover:text-purple-500 dark:hover:text-purple-400">
-                {sourceUrls[0]}
+                wiktionary.org
                 <svg
                   aria-hidden="true"
                   focusable="false"
