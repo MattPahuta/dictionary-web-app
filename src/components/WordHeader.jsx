@@ -7,10 +7,11 @@ function WordHeader({ word, phonetic, audioUrl }) {
 
   // Stop and reset if the word changes mid-playback
   useEffect(() => {
+    const myAudio = audioRef.current;
     return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
+      if (myAudio) {
+        myAudio.pause();
+        myAudio.currentTime = 0;
       }
       setPlaying(false);
     };
@@ -18,11 +19,12 @@ function WordHeader({ word, phonetic, audioUrl }) {
 
 
   const handlePlay = async () => {
-    if (!audioRef.current) return;
+    const myAudio = audioRef.current;
+    if (!myAudio) return;
 
     try {
       setAudioError(false);
-      await audioRef.current.play();
+      await myAudio.play();
     } catch {
       // Playback failed — reset button state and surface a subtle indicator
       setPlaying(false);
@@ -44,7 +46,7 @@ function WordHeader({ word, phonetic, audioUrl }) {
       </div>
 
       {audioUrl && (
-        <>
+        <div className="flex flex-col items-center gap-2">
           <audio
             ref={audioRef}
             src={audioUrl}
@@ -58,7 +60,7 @@ function WordHeader({ word, phonetic, audioUrl }) {
           />
           <button
             onClick={handlePlay}
-            disabled={playing}
+            disabled={playing || audioError}
             aria-label={`Play pronunciation of ${word}`}
             aria-pressed={playing}
             className="group border-0 rounded-full flex items-center justify-center cursor-pointer disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-500">
@@ -85,9 +87,9 @@ function WordHeader({ word, phonetic, audioUrl }) {
             </svg>
           </button>
           {audioError && (
-            <p className="text-xs text-zinc-600 dark:text-zinc-300">Audio unavailable</p>
+            <p className="text-xs text-zinc-600 dark:text-zinc-400">Audio unavailable</p>
           )}
-        </>
+        </div>
       )}
     </div>
   );
