@@ -11,26 +11,29 @@ function Header() {
 
   return (
     <header className="w-full max-w-3xl mx-auto py-5 px-4 sm:px-5 flex items-center justify-between">
-      <svg
-        role="img"
-        aria-labelledby="title"
-        className="w-7 sm:w-8"
-        xmlns="http://www.w3.org/2000/svg"
-        width="34"
-        height="38"
-        viewBox="0 0 34 38">
-        <title id="title">Dictionary app logo</title>
-        <g
-          fill="none"
-          fillRule="evenodd"
-          stroke="#838383"
-          strokeLinecap="round"
-          strokeWidth="1.5">
-          <path d="M1 33V5a4 4 0 0 1 4-4h26.8A1.2 1.2 0 0 1 33 2.2v26.228M5 29h28M5 37h28" />
-          <path strokeLinejoin="round" d="M5 37a4 4 0 1 1 0-8" />
-          <path d="M11 9h12" />
-        </g>
-      </svg>
+      <a
+        href="/"
+        className="rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500 cursor-pointer">
+        <svg
+          aria-hidden="true"
+          className="w-7 sm:w-8"
+          xmlns="http://www.w3.org/2000/svg"
+          width="34"
+          height="38"
+          viewBox="0 0 34 38">
+          <g
+            fill="none"
+            fillRule="evenodd"
+            stroke="#838383"
+            strokeLinecap="round"
+            strokeWidth="1.5">
+            <path d="M1 33V5a4 4 0 0 1 4-4h26.8A1.2 1.2 0 0 1 33 2.2v26.228M5 29h28M5 37h28" />
+            <path strokeLinejoin="round" d="M5 37a4 4 0 1 1 0-8" />
+            <path d="M11 9h12" />
+          </g>
+        </svg>
+        <span className="sr-only">Refresh page</span>
+      </a>
       <div className="flex gap-4 items-center">
         <div className="relative">
           <select
